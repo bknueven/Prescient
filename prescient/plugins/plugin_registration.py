@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from prescient.simulator.simulator import Simulator
     from prescient.engine.abstract_types import OperationsModel, RucModel
     from prescient.simulator.config import PrescientConfig
-import pyutilib.misc
+from pyomo.common.fileutils import import_file
 
 class PluginRegistrationContext:
     ''' Object that plugins use to register their callbacks
@@ -25,7 +25,7 @@ class PluginRegistrationContext:
         ''' Call the plugin registration method in the specified file
         '''
         try:
-            plugin_module = pyutilib.misc.import_file(path)
+            plugin_module = import_file(path)
         except:
             import os
             print(os.getcwd())
